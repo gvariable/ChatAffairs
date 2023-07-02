@@ -13,3 +13,7 @@
    2. click until has no clickable button
 
 #### JavaScript Rendering
+Selemium is shit, use [playwright](https://playwright.dev/python/docs/intro) instead.  
+1. Much more rubost system.
+2. Auto waiting for Ajax response.
+3. Asynchronous io support.
