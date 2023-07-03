@@ -7,6 +7,7 @@ from pathlib import Path
 
 
 async def fetch(url):
+    # TODO(gpl): improve efficiency and add functionality to wait for page loading
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         page = await browser.new_page()
