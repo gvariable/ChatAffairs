@@ -54,7 +54,7 @@ async def main():
                     print(f"{subtitle}, {match.group(1)}")
 
                     subject_meta.update(
-                        {"subtitle": subtitle, "onclick": match.group(0)}
+                        {"subtitle": subtitle, "taskCode": match.group(0)}
                     )
                     metas.append(subject_meta.copy())
             print()
