@@ -16,7 +16,7 @@ class AffairParser(object):
 
     def _parse_ol(self, lis):
         metas = []
-        for li in lis[3:9]:
+        for li in lis:
             meta = {}
 
             title = self.strip_non_empty(li.xpath("./div[1]//text()"))
@@ -39,17 +39,16 @@ class AffairParser(object):
 
                     trs = table.xpath(".//tr")
                     subtitle = " ".join(self.strip_non_empty(trs[0].xpath(".//text()")))
-                    print(subtitle)
 
                     for tr in trs[1:]:
                         td = self.strip_non_empty(tr.xpath(".//text()"))
-                        td = [td[0], "".join(td[1:])]
-                        data[td[0]] = td[1]
-                        print(td)
+                        if td:
+                            td = [td[0], "".join(td[1:])]
+                            data[td[0]] = td[1]
 
                     meta[subtitle] = data
             metas.append(meta)
-            return metas
+        return metas
 
     def _parse_table(self, lis):
         metas = []
@@ -104,7 +103,7 @@ def save_json(html_dir: Path, data_dir: Path, meta_fn: Path):
 
 
 if __name__ == "__main__":
-    html_dir = Path("htmls")
+    html_dir = Path("html")
     data_dir = Path("data")
     meta_fn = Path("gov.json")
     whole = Path("data.json")
