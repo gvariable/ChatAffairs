@@ -1,6 +1,9 @@
 from lxml import etree
 from itertools import zip_longest
 import json
+from pathlib import Path
+import json_stream
+from json_stream.writer import streamable_list
 
 
 class AffairParser(object):
@@ -82,12 +85,33 @@ class AffairParser(object):
         lis = root.xpath('//*[@class="contentList"]/ul/li')
         self.metas.extend(self._parse_table(lis[:3]))
         self.metas.extend(self._parse_ol(lis[3:9]))
-        return json.dumps(self.metas, indent=4, ensure_ascii=False)
+        return self.metas
+
+
+def save_json(html_dir: Path, data_dir: Path, meta_fn: Path):
+    with open(meta_fn, "r") as f:
+        for meta in json_stream.load(f):
+            meta = json_stream.to_standard_types(meta)
+            html_fn = html_dir / f"{meta['taskCode']}.html"
+            data_fn = data_dir / f"{meta['taskCode']}.json"
+
+            parser = AffairParser(html_fn.read_text())
+            text = parser.parse()
+            meta.update({"详情": text})
+
+            data_fn.write_text(json.dumps(meta, indent=4, ensure_ascii=False))
+            yield meta
 
 
 if __name__ == "__main__":
-    with open("meta.html", "r") as f:
-        html = f.read()
+    html_dir = Path("htmls")
+    data_dir = Path("data")
+    meta_fn = Path("gov.json")
+    whole = Path("data.json")
 
-    parser = AffairParser(html)
-    print(parser.parse())
+    if not data_dir.exists():
+        data_dir.mkdir()
+
+    data = streamable_list(save_json(html_dir, data_dir, meta_fn))
+    with open(whole, "w") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
