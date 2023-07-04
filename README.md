@@ -62,6 +62,11 @@ with open(metas_fn) as f:
 ```
 Wishing you a delightful coding experience!
 
+# Display
+
+![](assets/index.png)
+
+
 # References
 
 1. https://github.com/PKU-YuanGroup/ChatLaw

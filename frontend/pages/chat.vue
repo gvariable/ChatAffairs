@@ -2,7 +2,7 @@
 	<view :class="'page page_index'+(pageIndex==0?'':' hidden')">
 		<view v-if="!msgList.length" class="infoBox">
 			<view class="welcome">欢迎使用 政务+</view>
-			<view class="tips">HackDay</view>
+			<view class="tips">HackDay白嫖零食队🍖🌭🌮🍤</view>
 		</view>
 		<scroll-view v-else scroll-y="true" class="msgList" :scroll-top="scrollTop" scroll-with-animation="true">
 			<view class="list">
