@@ -6,3 +6,5 @@ html
 .data
 .html
 .env
+frontend/node_modules
+frontend/package-lock.json
