@@ -61,3 +61,8 @@ with open(metas_fn) as f:
         data_fn.write_text(json.dumps(meta, indent=4, ensure_ascii=False))
 ```
 Wishing you a delightful coding experience!
+
+# References
+
+1. https://github.com/PKU-YuanGroup/ChatLaw
+2. https://huggingface.co/IDEA-CCNL/Ziya-LLaMA-13B-v1
