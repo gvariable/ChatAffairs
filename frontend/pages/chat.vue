@@ -44,12 +44,17 @@
 </template>
 
 <script>
-	import {ref} from 'vue'
+	import {
+		ref
+	} from 'vue'
 	import Recorder from 'js-audio-recorder'
-	const baseUrl = 'http://183.195.182.126:20248/'  
-	function request(url,method,data) {
+	import urlencode from "urlencode";
+
+	const baseUrl = 'http://183.195.182.126:20248/'
+
+	function request(url, method, data) {
 		return uni.request({
-			url: baseUrl+url,
+			url: baseUrl + url,
 			method,
 			data,
 		})
@@ -181,12 +186,18 @@
 				data = await this.chat(qst)
 				this.msgList[this.msgList.length - 1].task_id = data.task_id
 			},
+			baiduGetText2Speech(text) {
+				const audio = new Audio();
+				audio.src = "http://127.0.0.1:10001/text2speech_api?tex=" + urlencode(urlencode(text)) + "&cuid=zhengwuplus_hackday&ctp=1&lan=zh&per=106";
+				audio.play();
+			},
 			baiduGetSpeech2Text(blob) {
 				const len = blob.size;
 				const reader = new FileReader();
 				reader.readAsDataURL(blob);
 				let voice_prepared = false
 				let result = ""
+				let error = false
 				reader.onloadend = function() {
 					const speech = reader.result.split(",")[1];
 					const data = {
@@ -206,18 +217,24 @@
 							'Content-Type': 'application/json'
 						},
 						success: (res) => {
-							result = res.data.result[0]
-							voice_prepared = true
+
+							if (res.data.err_no == 0) {
+								result = res.data.result[0]
+								voice_prepared = true
+							} else {
+								error = true
+							}
+
 						}
 					})
 				}
 				setTimeout(() => {
-					if(voice_prepared){
+					if (voice_prepared) {
 						this.qst = result
 						this.switchCase();
 					}
 				}, 2000)
-				
+
 			},
 			async chat(qst) {
 				let list = []
@@ -240,33 +257,33 @@
 				})
 				this.running = false
 			},
-			async chat_with_api(chat,cb){
-				let date = Math.floor(new Date().getTime()/1000)
-				let rand = parseInt(Math.random()*100000000)+''
-				for(let i=rand.length;i<8;i++) {
-					rand = '0'+rand
+			async chat_with_api(chat, cb) {
+				let date = Math.floor(new Date().getTime() / 1000)
+				let rand = parseInt(Math.random() * 100000000) + ''
+				for (let i = rand.length; i < 8; i++) {
+					rand = '0' + rand
 				}
-				let query_id = date+'-'+rand
+				let query_id = date + '-' + rand
 				let ans = await new Promise((resolve) => {
 					let intv = setInterval(async () => {
-						let res = await request('chat_stream_pro','POST',{
+						let res = await request('chat_stream_pro', 'POST', {
 							query_id,
 							chat
 						})
 						let status = res.data.status
 						let answer = res.data.response
 						cb && cb(answer)
-						if(status == 1) {
+						if (status == 1) {
 							clearInterval(intv)
 							resolve(answer)
+							this.baiduGetText2Speech(answer);
 						}
-					},1000)
+					}, 1000)
 				})
 				return ans
 			}
 		}
 	}
-
 </script>
 
 <style>
@@ -511,7 +528,7 @@
 		flex-wrap: wrap;
 		font-size: 14px;
 	}
-	
+
 	.page_index .qstBox {
 		position: fixed;
 		left: 8%;

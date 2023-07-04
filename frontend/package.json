@@ -11,7 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "ant-design-vue": "^1.7.8",
+    "axios": "^1.4.0",
     "core-js": "^2.6.12",
-    "js-audio-recorder": "^1.0.7"
+    "js-audio-recorder": "^1.0.7",
+    "recorder-js": "^1.0.7",
+    "urlencode": "^1.1.0"
   }
 }

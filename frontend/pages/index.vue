@@ -1,8 +1,5 @@
 <template>
 	<view class="pages">
-		<view class="sider">
-			<view class="name">HackDay 2023 政务+</view>
-		</view>
 		<Chat :class="(pageIndex==0?'':'hidden')" @pageTo="pageTo" :link="link"></Chat>
 	</view>
 </template>
