@@ -1,0 +1,40 @@
+model_name_or_path: 'our-model'
+
+# dataset
+dataset_path: 'dataset.jsonl'
+data_max_length: 512
+
+# trainer
+output_dir: 'outputs'
+overwrite_output_dir: true
+deepspeed: 'config/dp_zero2.json'
+fp16: true
+do_train: true
+do_eval: false
+gradient_accumulation_steps: 8
+per_device_train_batch_size: 2
+per_device_eval_batch_size: 1
+learning_rate: 0.0001
+weight_decay: 0
+num_train_epochs: 3
+lr_scheduler_type: 'constant'
+max_grad_norm: 0.3
+logging_strategy: 'steps'
+logging_steps: 1
+save_strategy: 'steps'
+save_steps: 50
+save_total_limit: 10
+seed: 20021009
+remove_unused_columns: false
+load_best_model_at_end: false
+metric_for_best_model: 'acc'
+group_by_length: true
+report_to: 'wandb'
+dataloader_pin_memory: true
+gradient_checkpointing: true
+
+## Lora
+lora_rank: 16
+lora_dropout: 0.05
+lora_alpha: 8
+trainable: "q_proj,v_proj,k_proj,o_proj,gate_proj,down_proj,up_proj"
