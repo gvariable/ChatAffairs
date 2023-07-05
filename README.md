@@ -14,12 +14,13 @@ Since the 18th National Congress of the Communist Party of China, the Party Cent
 + **Customized voice output function** that can simulate the voices of users' loved ones, making consulting services more caring.
 # Modules
 
-Our project is divided into four modules: data collection (crawler), model training, and front-end and back-end.
+Our project is divided into five modules: data collection (crawler), ChatAffair+ model training, audio cloning , front-end and back-end.
 
 You can jump to the following page to learn about the details of different modules.
 
 + 🐢 [Crawler](crawler/README.md)
 + 🤖 [Train](train/README.md)
++ 🎙️ [AC](ac/README.md)
 
 # Display
 
