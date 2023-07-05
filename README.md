@@ -25,7 +25,7 @@ You can jump to the following page to learn about the details of different modul
 
 ![](assets/test.gif)
 
-Click here to download the demonstration video: [Download Demo Video](assets/display.mov)
+Click here to download the demonstration video with audio input & output: [Download Demo Video](assets/display.mov)
 
 # References
 

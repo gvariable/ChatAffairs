@@ -27,7 +27,7 @@
 
 ![](assets/test.gif)
 
-点击这里可以下载demo视频: [Download Demo Video](assets/display.mov)
+点击这里可以下载语音输入输出的demo视频: [Download Demo Video](assets/display.mov)
 
 # 参考
 
