@@ -25,6 +25,10 @@ Audio Cloning is a powerful feature that allows people to clone the timbre of au
 We collected audio data of UP [Luo Xiang](https://space.bilibili.com/517327498?spm_id_from=333.1007.tianma.1-2-2.click) from the Bilibili platform and trained our model using this data. The results of the inference are as follows:
 
 
+<audio controls>
+  <source src="./ac/sample.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
 
 
 
