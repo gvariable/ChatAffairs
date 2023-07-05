@@ -188,7 +188,8 @@
 			},
 			baiduGetText2Speech(text) {
 				const audio = new Audio();
-				audio.src = "http://127.0.0.1:10001/text2speech_api?tex=" + urlencode(urlencode(text)) + "&cuid=zhengwuplus_hackday&ctp=1&lan=zh&per=106";
+				audio.src = "http://127.0.0.1:10001/text2speech_api?tex=" + urlencode(urlencode(text)) +
+					"&cuid=zhengwuplus_hackday&ctp=1&lan=zh&per=106";
 				audio.play();
 			},
 			baiduGetSpeech2Text(blob) {
@@ -217,7 +218,6 @@
 							'Content-Type': 'application/json'
 						},
 						success: (res) => {
-
 							if (res.data.err_no == 0) {
 								result = res.data.result[0]
 								voice_prepared = true
@@ -233,8 +233,8 @@
 						this.qst = result
 						this.switchCase();
 					}
-				}, 2000)
-
+				}, 3000)
+				
 			},
 			async chat(qst) {
 				let list = []
