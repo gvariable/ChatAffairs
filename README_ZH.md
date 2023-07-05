@@ -1,5 +1,7 @@
 # Unique Hackday 2023
 
+[中文](README_ZH.md) | [En](README.md)
+
 ![](assets/index.gif)
 
 ## 动机
@@ -31,3 +33,4 @@
 
 1. https://github.com/PKU-YuanGroup/ChatLaw
 2. https://huggingface.co/IDEA-CCNL/Ziya-LLaMA-13B-v1
+3. https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI
