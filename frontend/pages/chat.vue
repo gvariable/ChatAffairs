@@ -50,7 +50,7 @@
 	import Recorder from 'js-audio-recorder'
 	import urlencode from "urlencode";
 
-	const baseUrl = 'http://183.195.182.126:20248/'
+	const baseUrl = 'http://183.195.182.126:20240/'
 
 	function request(url, method, data) {
 		return uni.request({

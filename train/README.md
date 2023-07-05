@@ -1,6 +1,6 @@
 # Model Details
 
-Base Model: [Ziya](https://huggingface.co/IDEA-CCNL/Ziya-LLaMA-13B-v1)
+Base Model: [ChatLaw](https://github.com/PKU-YuanGroup/ChatLaw)
 
 Model Param: 13B
 

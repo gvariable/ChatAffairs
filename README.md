@@ -1,5 +1,6 @@
 # Unique Hackday
 
+![](assets/index.gif)
 # Modules
 
 Our project is divided into four modules: data collection (crawler), model training, and front-end and back-end.
@@ -11,8 +12,7 @@ You can jump to the following page to learn about the details of different modul
 
 # Display
 
-![](assets/index.png)
-
+![](assets/test.gif)
 
 # References
 
