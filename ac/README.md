@@ -26,7 +26,7 @@ We collected audio data of UP [Luo Xiang](https://space.bilibili.com/517327498?s
 
 
 <audio controls>
-  <source src="./ac/sample.mp3" type="audio/mp3">
+  <source src="./sample.mp3" type="audio/mp3">
   Your browser does not support the audio element.
 </audio>
 
