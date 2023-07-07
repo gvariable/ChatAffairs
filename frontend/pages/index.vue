@@ -1,18 +1,22 @@
 <template>
 	<view class="pages">
+		<!-- <Map :address="this.address"></Map> -->
 		<Chat :class="(pageIndex==0?'':'hidden')" @pageTo="pageTo" :link="link"></Chat>
 	</view>
 </template>
 
 <script>
 	import Chat from './chat.vue'
+	import Map from './map.vue'
 	export default {
 		components: {
 			Chat,
+			Map,
 		},
 		data() {
 			return {
 				pageIndex: 0,
+				address: "武汉市洪山区卓刀泉北路39号A栋408"
 			}
 		},
 	}
