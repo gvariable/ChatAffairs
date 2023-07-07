@@ -19,6 +19,10 @@
 									<text selectable="true">{{item.content}}</text>
 									<view v-if="index===msgList.length-1&&running" class="blink"></view>
 								</view>
+								<view :class="'gaodeMap	'+((index!==msgList.length-1||running)?'fold':'')"
+									v-if="item.map">
+									<Map :address="item.map_address"></Map>
+								</view>
 							</view>
 						</view>
 					</view>
@@ -47,6 +51,7 @@
 	import {
 		ref
 	} from 'vue'
+	import Map from './map.vue'
 	import Recorder from 'js-audio-recorder'
 	import urlencode from "urlencode";
 
@@ -60,7 +65,6 @@
 		})
 	}
 	export default {
-		props: ['link'],
 		data() {
 			return {
 				pageIndex: 0,
@@ -77,6 +81,9 @@
 					compiling: true
 				})
 			}
+		},
+		components: {
+		    Map
 		},
 		mounted() {
 			this.scrollIntv = setInterval(() => {
@@ -184,7 +191,6 @@
 				}, 100)
 				let data = {}
 				data = await this.chat(qst)
-				this.msgList[this.msgList.length - 1].task_id = data.task_id
 			},
 			baiduGetText2Speech(text) {
 				const audio = new Audio();
@@ -234,7 +240,7 @@
 						this.switchCase();
 					}
 				}, 3000)
-				
+
 			},
 			async chat(qst) {
 				let list = []
@@ -255,6 +261,12 @@
 				let data = await this.chat_with_api(list, ans => {
 					this.print(ans)
 				})
+				
+				const addressRegex = /(([\u4E00-\u9FA5]{2,6})[省市区]{1}|[\u4E00-\u9FA5]{1,4}(自治区|特别行政区|市)){0,1}([\u4E00-\u9FA5]{2,9})[市区县]{1}([\u4E00-\u9FA5]{2,20})(街道|镇|乡|街|路){0,1}(\d{1,4}[号楼]{0,1})(\d{1,4}号){0,1}/g;
+				if(addressRegex.test(this.msgList[this.msgList.length-1].content)){
+					this.msgList[this.msgList.length-1].map = true
+					this.msgList[this.msgList.length-1].map_address = this.msgList[this.msgList.length-1].content
+				}
 				this.running = false
 			},
 			async chat_with_api(chat, cb) {
@@ -429,7 +441,7 @@
 		flex: 1;
 		height: 1px;
 		margin: 0 10px;
-		background-color: #9ec1f5;
+		background-color: #d291f7;
 	}
 
 	.page_index .msgList .msg {
@@ -588,6 +600,24 @@
 		background-color: #800080;
 	}
 
+	.page_index .msg .gaodeMap {
+			height: 200px;
+			margin-top: 10px;
+			padding-top: 10px;
+			border-top: 1px solid #502284;
+			overflow: hidden;
+			transition: all linear 0.2s;
+	}
+	.page_index .msg .gaodeMap.fold {
+		height: 0;
+		margin: 0;
+		padding: 0;
+		border: 0px;
+	}
+	.page_index .msg .uploadFile .upload:hover {
+		background-color: #e9edfc;
+	}
+	
 	@media screen and (max-width: 500px) {
 		.page_index .infoBox {
 			/* display: none; */
