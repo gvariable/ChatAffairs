@@ -188,7 +188,7 @@
 			},
 			baiduGetText2Speech(text) {
 				const audio = new Audio();
-				audio.src = "http://127.0.0.1:10001/text2speech_api?tex=" + urlencode(urlencode(text)) +
+				audio.src = "http://127.0.0.1:10001/api/text2speech?tex=" + urlencode(urlencode(text)) +
 					"&cuid=zhengwuplus_hackday&ctp=1&lan=zh&per=106";
 				audio.play();
 			},
@@ -211,7 +211,7 @@
 						"speech": speech,
 					}
 					const request = uni.request({
-						url: 'http://127.0.0.1:10001/voice_api',
+						url: 'http://127.0.0.1:10001/api/voice',
 						method: 'POST',
 						data: data,
 						header: {
